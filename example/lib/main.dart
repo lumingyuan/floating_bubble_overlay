@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color(0xFF0A66C2); 
+    const primaryColor = Color(0xFF0A66C2);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Floating Bubble Panel',
       theme: ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF2F4F8), 
+        scaffoldBackgroundColor: const Color(0xFFF2F4F8),
         colorScheme: ColorScheme.fromSeed(
           seedColor: primaryColor,
           primary: primaryColor,
@@ -85,7 +85,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // When app goes background -> start bubble.
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
       _startBubbleIfPossible(auto: true);
     }
 
@@ -129,7 +130,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary.withOpacity(0.12),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.primary.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
@@ -169,10 +172,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
               const Text(
                 'Quick Actions',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
 
@@ -201,7 +201,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         _ActionTile(
                           icon: Icons.notifications_active_rounded,
                           title: 'Notification\nPermission',
-                          onTap: () => _requestPostNotificationsPermission(context),
+                          onTap:
+                              () =>
+                                  _requestPostNotificationsPermission(context),
                         ),
                         _ActionTile(
                           icon: Icons.notifications_rounded,
@@ -238,28 +240,33 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                 id: 1,
                                 title: 'Floating Bubble Panel',
                                 body: 'Floating bubble service is active',
-                                channelId: 'floating_bubble_overlay_notification',
+                                channelId:
+                                    'floating_bubble_overlay_notification',
                                 channelName: 'Floating Bubble Notification',
                               ),
-                              onTap: () => _logMessage(
-                                context: context,
-                                message: 'Bubble tapped',
-                              ),
-                              onTapDown: (x, y) => _logMessage(
-                                context: context,
-                                message:
-                                    'Bubble pressed at: ${_getRoundedCoordinatesAsString(x, y)}',
-                              ),
-                              onTapUp: (x, y) => _logMessage(
-                                context: context,
-                                message:
-                                    'Bubble released at: ${_getRoundedCoordinatesAsString(x, y)}',
-                              ),
-                              onMove: (x, y) => _logMessage(
-                                context: context,
-                                message:
-                                    'Bubble moved to: ${_getRoundedCoordinatesAsString(x, y)}',
-                              ),
+                              onTap:
+                                  () => _logMessage(
+                                    context: context,
+                                    message: 'Bubble tapped',
+                                  ),
+                              onTapDown:
+                                  (x, y) => _logMessage(
+                                    context: context,
+                                    message:
+                                        'Bubble pressed at: ${_getRoundedCoordinatesAsString(x, y)}',
+                                  ),
+                              onTapUp:
+                                  (x, y) => _logMessage(
+                                    context: context,
+                                    message:
+                                        'Bubble released at: ${_getRoundedCoordinatesAsString(x, y)}',
+                                  ),
+                              onMove:
+                                  (x, y) => _logMessage(
+                                    context: context,
+                                    message:
+                                        'Bubble moved to: ${_getRoundedCoordinatesAsString(x, y)}',
+                                  ),
                             );
                           },
                         ),
@@ -288,10 +295,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     try {
       await method();
     } catch (error) {
-      log(
-        name: 'Floating Bubble Overlay Playground',
-        error.toString(),
-      );
+      log(name: 'Floating Bubble Overlay Playground', error.toString());
 
       SnackBars.show(
         context: context,
@@ -302,100 +306,94 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   }
 
   Future<void> _requestOverlayPermission(BuildContext context) async {
-    await _runMethod(
-      context,
-      () async {
-        final isGranted = await FloatingBubbleOverlay.instance.requestOverlayPermission();
+    await _runMethod(context, () async {
+      final isGranted =
+          await FloatingBubbleOverlay.instance.requestOverlayPermission();
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: isGranted
-              ? 'Overlay permission granted'
-              : 'Overlay permission not granted',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message:
+            isGranted
+                ? 'Overlay permission granted'
+                : 'Overlay permission not granted',
+      );
+    });
   }
 
   Future<void> _hasOverlayPermission(BuildContext context) async {
-    await _runMethod(
-      context,
-      () async {
-        final hasPermission = await FloatingBubbleOverlay.instance.hasOverlayPermission();
+    await _runMethod(context, () async {
+      final hasPermission =
+          await FloatingBubbleOverlay.instance.hasOverlayPermission();
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: hasPermission
-              ? 'Overlay permission granted'
-              : 'Overlay permission not granted',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message:
+            hasPermission
+                ? 'Overlay permission granted'
+                : 'Overlay permission not granted',
+      );
+    });
   }
 
-  Future<void> _requestPostNotificationsPermission(
-    BuildContext context,
-  ) async {
-    await _runMethod(
-      context,
-      () async {
-        final isGranted =
-            await FloatingBubbleOverlay.instance.requestPostNotificationsPermission();
+  Future<void> _requestPostNotificationsPermission(BuildContext context) async {
+    await _runMethod(context, () async {
+      final isGranted =
+          await FloatingBubbleOverlay.instance
+              .requestPostNotificationsPermission();
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: isGranted
-              ? 'Notification permission granted'
-              : 'Notification permission not granted',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message:
+            isGranted
+                ? 'Notification permission granted'
+                : 'Notification permission not granted',
+      );
+    });
   }
 
   Future<void> _hasPostNotificationsPermission(BuildContext context) async {
-    await _runMethod(
-      context,
-      () async {
-        final hasPermission =
-            await FloatingBubbleOverlay.instance.hasPostNotificationsPermission();
+    await _runMethod(context, () async {
+      final hasPermission =
+          await FloatingBubbleOverlay.instance.hasPostNotificationsPermission();
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: hasPermission
-              ? 'Notification permission granted'
-              : 'Notification permission not granted',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message:
+            hasPermission
+                ? 'Notification permission granted'
+                : 'Notification permission not granted',
+      );
+    });
   }
 
   Future<void> _isRunning(BuildContext context) async {
-    await _runMethod(
-      context,
-      () async {
-        final isRunning = await FloatingBubbleOverlay.instance.isRunning();
+    await _runMethod(context, () async {
+      final isRunning = await FloatingBubbleOverlay.instance.isRunning();
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: isRunning ? 'Bubble is active' : 'Bubble is not active',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message: isRunning ? 'Bubble is active' : 'Bubble is not active',
+      );
+    });
   }
 
   // Auto-start helper: checks permission and avoids duplicates.
   Future<void> _startBubbleIfPossible({bool auto = false}) async {
     if (_autoRunning) return;
 
-    final hasPermission = await FloatingBubbleOverlay.instance.hasOverlayPermission();
+    final hasPermission =
+        await FloatingBubbleOverlay.instance.hasOverlayPermission();
     if (!hasPermission) {
       if (auto && mounted) {
-        _logMessage(context: context, message: 'Overlay permission is not granted');
+        _logMessage(
+          context: context,
+          message: 'Overlay permission is not granted',
+        );
       }
       return;
     }
@@ -446,40 +444,34 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     Function(double x, double y)? onTapUp,
     Function(double x, double y)? onMove,
   }) async {
-    await _runMethod(
-      context,
-      () async {
-        final hasStarted = await FloatingBubbleOverlay.instance.startBubble(
-          bubbleOptions: bubbleOptions,
-          notificationOptions: notificationOptions,
-          onTap: onTap,
-          onTapDown: onTapDown,
-          onTapUp: onTapUp,
-          onMove: onMove,
-        );
+    await _runMethod(context, () async {
+      final hasStarted = await FloatingBubbleOverlay.instance.startBubble(
+        bubbleOptions: bubbleOptions,
+        notificationOptions: notificationOptions,
+        onTap: onTap,
+        onTapDown: onTapDown,
+        onTapUp: onTapUp,
+        onMove: onMove,
+      );
 
-        SnackBars.show(
-          context: context,
-          status: SnackBarStatus.success,
-          message: hasStarted ? 'Bubble started' : 'Bubble did not start',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message: hasStarted ? 'Bubble started' : 'Bubble did not start',
+      );
+    });
   }
 
   Future<void> _stopBubble(BuildContext context) async {
-    await _runMethod(
-      context,
-      () async {
-        final hasStopped = await FloatingBubbleOverlay.instance.stopBubble();
+    await _runMethod(context, () async {
+      final hasStopped = await FloatingBubbleOverlay.instance.stopBubble();
 
-        SnackBars.show(
-          context: context, 
-          status: SnackBarStatus.success,
-          message: hasStopped ? 'Bubble stopped' : 'Bubble did not stop',
-        );
-      },
-    );
+      SnackBars.show(
+        context: context,
+        status: SnackBarStatus.success,
+        message: hasStopped ? 'Bubble stopped' : 'Bubble did not stop',
+      );
+    });
   }
 
   void _logMessage({required BuildContext context, required String message}) {
@@ -515,15 +507,17 @@ class _ActionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primary = Theme.of(context).colorScheme.primary;
-    final bg = danger
-        ? const Color(0xFFFFE8E8)
-        : secondary
+    final bg =
+        danger
+            ? const Color(0xFFFFE8E8)
+            : secondary
             ? Colors.white
             : primary;
 
-    final fg = danger
-        ? const Color(0xFFB3261E)
-        : secondary
+    final fg =
+        danger
+            ? const Color(0xFFB3261E)
+            : secondary
             ? primary
             : Colors.white;
 

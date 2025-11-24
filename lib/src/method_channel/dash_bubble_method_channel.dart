@@ -103,19 +103,14 @@ class MethodChannelDashBubble extends DashBubblePlatform {
           );
           break;
         default:
-          throw UnimplementedError(
-            'Method ${call.method} is not implemented',
-          );
+          throw UnimplementedError('Method ${call.method} is not implemented');
       }
     });
 
-    return (await _invokeMethod(
-      Constants.startBubble,
-      {
-        ...(bubbleOptions ?? BubbleOptions()).toMap(),
-        ...(notificationOptions ?? NotificationOptions()).toMap()
-      },
-    ));
+    return (await _invokeMethod(Constants.startBubble, {
+      ...(bubbleOptions ?? BubbleOptions()).toMap(),
+      ...(notificationOptions ?? NotificationOptions()).toMap(),
+    }));
   }
 
   /// Invokes the method channel to stop the bubble.

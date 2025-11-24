@@ -90,7 +90,8 @@ class SnackBars {
               // Cerrar
               InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onTap: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+                onTap:
+                    () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
                 child: const Padding(
                   padding: EdgeInsets.all(6),
                   child: Icon(

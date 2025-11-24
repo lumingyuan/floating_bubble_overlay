@@ -1,8 +1,5 @@
-library floating_bubble_overlay;
-
 import 'src/method_channel/dash_bubble_platform_interface.dart';
 import 'src/models/models.dart';
-
 
 /// The main class of the plugin.
 class FloatingBubbleOverlay {
