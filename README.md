@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/Platform-Flutter-02569B?logo=flutter" alt="Platform">
   </a>
   <a href="#">
-    <img alt="Version" src="https://img.shields.io/badge/Version-1.0.3-blue">
+    <img alt="Version" src="https://img.shields.io/badge/Version-1.0.5-blue">
   </a>
   <br>
 </p>

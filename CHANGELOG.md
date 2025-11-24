@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.0.5
 - Initial public release.
 - Android floating bubble overlay based on Floating-Bubble-View.
 - Drag-to-close behavior with bottom close target.
