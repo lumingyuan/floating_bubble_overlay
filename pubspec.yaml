@@ -5,7 +5,7 @@ homepage: https://github.com/MICHAELVM01/floating_bubble_overlay
 repository: https://github.com/MICHAELVM01/floating_bubble_overlay
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.4.4
   flutter: '>=3.3.0'
 
 dependencies:
